@@ -1,0 +1,29 @@
+﻿<Window x:Class="Gekka.WPF.Sample.AskDialog.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gekka.WPF.Sample.AskDialog"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="200" Width="300"
+        local:AskMessageService.AskMessage="{Binding Path=AskMessage2}"
+        local:AskMessageService.AskMessageCommandParameter="XYZ">
+        <!-- ↑↑ダイアログで表示させたい内容を受け取る添付プロパティに設定 -->
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <Button Command="{Binding Path=TestCommand1}" Content="確認ダイアログ1" Margin="10"
+                    CommandParameter="1234" ></Button>
+
+            <Button Command="{Binding Path=TestCommand2}" Content="確認ダイアログ2" Margin="10"/>
+
+            <TextBlock Text="{Binding Path=Value}" HorizontalAlignment="Center" FontSize="30"/>
+        </StackPanel>
+
+        
+        <!-- ダイアログ風のコントロールをウィンドウ内で作って表示 -->
+        <!-- App.xamlに表示のさせ方は定義してある -->
+        <ContentControl Content="{Binding Path=AskMessage1}" 
+                        TextElement.FontSize="30"
+                        Style="{StaticResource askMessageControlStyle}" />
+    </Grid>
+</Window>
